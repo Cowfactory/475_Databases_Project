@@ -1,11 +1,12 @@
 --find out if CHECK constraint on starrating works, or if starRating must be initialzed to 0
 
---DROP TABLE ACCOUNT;
 --DROP TABLE CASTLIST;
 --DROP TABLE EBOOKS;
 --DROP TABLE GAMES;
---DROP TABLE MOVIES;
+--DROP TABLE MOVIE;
 --DROP TABLE MUSIC;
+--DROP TABLE ACCOUNT;
+
 
 CREATE TABLE ACCOUNT (
     accID INT	            NOT NULL,
@@ -63,7 +64,7 @@ CREATE TABLE CASTLIST(
 	Lname		VARCHAR(20) NOT NULL,
 	movieID	    INT,
 	FOREIGN KEY (movieID)
-        REFERENCES MOVIE(movieID)
+        REFERENCES MOVIES(movieID)
         ON UPDATE CASCADE
 );
 
