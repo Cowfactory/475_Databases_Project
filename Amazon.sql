@@ -12,7 +12,7 @@ CREATE TABLE ACCOUNT (
     Fname		VARCHAR(20)     NOT NULL,
     Lname		VARCHAR(20)     NOT NULL,
     region 		VARCHAR(50)     NOT NULL,
-    age		    INT             DEFAULT(0)
+    age		    INT             DEFAULT(0),
 
     PRIMARY KEY (accID)
 );
