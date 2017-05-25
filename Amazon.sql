@@ -1,18 +1,18 @@
 --find out if CHECK constraint on starrating works, or if starRating must be initialzed to 0
 
-DROP TABLE ACCOUNT;
-DROP TABLE CAST;
-DROP TABLE EBOOKS;
-DROP TABLE GAMES;
-DROP TABLE MOVIES;
-DROP TABLE MUSIC;
+--DROP TABLE ACCOUNT;
+--DROP TABLE CASTLIST;
+--DROP TABLE EBOOKS;
+--DROP TABLE GAMES;
+--DROP TABLE MOVIES;
+--DROP TABLE MUSIC;
 
-CREATE TABLE ACCOUNT(
-    accID		INT	            NOT NULL,
+CREATE TABLE ACCOUNT (
+    accID INT	            NOT NULL,
     Fname		VARCHAR(20)     NOT NULL,
     Lname		VARCHAR(20)     NOT NULL,
     region 		VARCHAR(50)     NOT NULL,
-    age		    INT             DEFAULT 0
+    age		    INT             DEFAULT(0)
 );
 
 CREATE TABLE GAMES(
@@ -56,7 +56,7 @@ CREATE TABLE MOVIES(
           ageRating = ('M')  OR ageRating = ('Ao'))
 );
 
-CREATE TABLE CAST(
+CREATE TABLE CASTLIST(
 	Fname		VARCHAR(20) NOT NULL,
 	Lname		VARCHAR(20) NOT NULL,
 	movieID	    INT,
