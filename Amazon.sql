@@ -13,6 +13,8 @@ CREATE TABLE ACCOUNT (
     Lname		VARCHAR(20)     NOT NULL,
     region 		VARCHAR(50)     NOT NULL,
     age		    INT             DEFAULT(0)
+
+    PRIMARY KEY (accID)
 );
 
 CREATE TABLE GAMES(
