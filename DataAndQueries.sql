@@ -1,39 +1,49 @@
---Sample data
+--QUERIES
 
---ACCOUNTS sample data
-INSERT INTO ACCOUNTS 	
-	VALUES (1765, 'Carey', 'Roberts', 'Pacific Northwest', 25);
+--Games
+--Request games that belong to a certain AgeRating.
+SELECT * FROM GAMES WHERE AgeRating = <query>;
 
---GAMES sample data
-INSERT INTO GAMES 
-	VALUES ( 0000001, 'Final Fantasy VII', 'SQUARESOFT', 'RPG', 'T', NULL, NULL);
-INSERT INTO GAMES 
-	VALUES ( 0000002, 'Final Fantasy XV', 'SQUARE ENIX', 'RPG', 'T', 5, 50:14:23);
-INSERT INTO GAMES 
-	VALUES ( 0000000, 'BROKEN GAMEI', 'SQUARELUL', 'jRPG', 'T', 6, NULL);
+--Request all played games sorted by star rating.
+SELECT * FROM GAMES ORDER BY starRating;
 
---MOVIES sample data
-INSERT INTO MOVIES
-	VALUES (5504, 'Casablanca', 11/26/1942, 'Michael Curtiz', 'Drama Film, Romance' , 01:42:67, 'Hal B. Wallis', 1765, 'PG', 5);
+--Music
+--View all music sorted by play time.
+SELECT * FROM MUSIC ORDER BY playTime;
+ 
+--View all music sorted by star rating.
+SELECT * FROM MUSIC ORDER BY starRating;
 
---MUSIC sample data	
-INSERT INTO MUSIC 
-	VALUES ( 7145, 'Apologize', 'One Republic' , 'Greg Wells', 00:03:28, 5, 1765);
+--Movies
+--View all movies belonging to a certain genre.
+--double check that this works
+SELECT * FROM MOVIES WHERE genre = <query>;
 
+--View all movies sorted by star rating.
+SELECT * FROM MOVIES ORDER BY starRating;
 
---EBOOKS sample data
+--EBooks
+--Look up a book based on name.
+SELECT * FROM EBOOKS WHERE EBOOKS.title = <query>;
+ 
+--View all books belonging to a specific genre.
+SELECT EBOOKS.title FROM EBOOKS WHERE EBOOKS.genre = <query>;
 
-INSERT INTO EBOOKS
-	VALUES(1566, 'Lion', 'Saroo Brierley', 'Joseph Ellis', 5, 1765);
-INSERT INTO EBOOKS
-	VALUES(1567, 'Sully', 'Harper Collins', 'Jeffrey Zaslow', 5, 1766);
-INSERT INTO EBOOKS
-	VALUES(1568, 'Hidden Figures', 'Margot Lee', 'Arthur Zelizer', 5, 1767);
+--View all books owned sorted by star rating.
+SELECT EBOOKS.title FROM EBOOKS WHERE EBOOKS.id = <accId> AND EBOOKS.starRating=<1-5>;
 
---CASTLIST sample data
-INSERT INTO CASTLIST 
-	VALUES ('Humphrey', 'Bogart', 7145);
-INSERT INTO CASTLIST
-	VALUES ('Daniel', 'Radcliffe', 7146);
-INSERT INTO CASTLIST
-	VALUES('Leonardo', 'DiCaprio', 7147);
+--View all e-books written by a specified author.
+SELECT * FROM EBOOKS WHERE EBOOKS.author = <query>;
+
+--View all cast involved with a specific movie
+SELECT * FROM CASTLIST WHERE CASTLIST.MovieID = MOVIES.MovieID AND MOVIES.movieID = <query>;
+ 
+--View all cast with the last name DiCaprio 
+SELECT * FROM CASTLIST WHERE CASTLIST.Lname='DiCaprio';
+ 
+--View all cast in a specific genre
+SELECT CASTLIST.Fname, CASTLIST.Lname FROM CASTLIST, MOVIES WHERE CASTLIST.movieID = MOVIE.movieID  AND MOVIE.genre = <query>;
+ 
+--View all cast in a movie released in 2000
+SELECT CASTLIST.Fname, CASTLIST.Lname FROM CASTLIST, MOVIES WHERE MOVIE.releaseDate > ‘1999-12-31’ AND MOVIE.releaseDate <’2001-1-1’ AND CASTLIST.movieID = MOVIE.movieID;
+ 

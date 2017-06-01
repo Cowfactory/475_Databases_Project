@@ -109,7 +109,7 @@ INSERT INTO GAMES
 INSERT INTO GAMES 
 	VALUES ( 0000002, 'Final Fantasy XV', 'SQUARE ENIX', 'RPG', 'T', 5, '50:14:23', 1765);
 INSERT INTO GAMES 
-	VALUES ( 0000000, 'BROKEN GAMEI', 'SQUARELUL', 'jRPG', 'T', 6, NULL, 42069);
+	VALUES ( 0000003, 'Mature Game', 'SQUARELUL', 'jRPG', 'M', 3, NULL, 42069);
 
 --MOVIES sample data
 INSERT INTO MOVIES
@@ -121,3 +121,23 @@ INSERT INTO MUSIC
 
 
 --EBOOKS sample data
+
+INSERT INTO EBOOKS
+	VALUES(1566, 'Lion', 'Saroo Brierley', 'Joseph Ellis', 5, 1765);
+INSERT INTO EBOOKS
+	VALUES(1567, 'Sully', 'Harper Collins', 'Jeffrey Zaslow', 5, 1766);
+INSERT INTO EBOOKS
+	VALUES(1568, 'Hidden Figures', 'Margot Lee', 'Arthur Zelizer', 5, 1767);
+
+--CASTLIST sample data
+INSERT INTO CASTLIST 
+	VALUES ('Humphrey', 'Bogart', 7145);
+INSERT INTO CASTLIST
+	VALUES ('Daniel', 'Radcliffe', 7146);
+INSERT INTO CASTLIST
+	VALUES('Leonardo', 'DiCaprio', 7147);
+
+	
+	
+
+
