@@ -11,37 +11,76 @@
 <div class="container">
 <h2>Movies</h2>
 
-<ul>
-    <table border=1>
-        <tr>
-            <th>Movie ID</th>
-            <th>Title</th>
-            <th>Release Date</th>
-            <th>Director</th>
-            <th>Genre</th>
-            <th>Play time</th>
-            <th>Publisher</th>
-            <th>Account ID</th>
-            <th>Rating</th>
-            <th>Age Rating</th>
-        </tr>
-        <% result.rows.forEach(function(row) { %>
-            <tr>
-                <td><%= row.movieid %></td>
-                <td><%= row.title %></td>
-                <td><%= row.releasedate %></td>
-                <td><%= row.director %></td>
-                <td><%= row.genre %></td>
-                <td><%= row.playtime %></td>
-                <td><%= row.publisher %></td>
-                <td><%= row.accid %></td>
-                <td><%= row.starrating %></td>
-                <td><%= row.agerating %></td>
-            </tr>
-        <% }); %>
-    </table>
-
-</ul>
+<form action="/api/movie" method="post">
+  <div class="form-group">
+    <label for="movieId">Movie ID</label>
+    <input type="text" class="form-control" name="movieId" id="movieId" placeholder="Movie ID" required>
+  </div>
+  <div class="form-group">
+    <label for="movieTitle">Title</label>
+    <input type="text" class="form-control" name="movieTitle" id="movieTitle" placeholder="Title" required>
+  </div>
+  <div class="form-group">
+    <label for="movieReleaseDate">Release Date</label>
+    <input type="text" class="form-control" name="movieReleaseDate" id="movieReleaseDate" placeholder="YYYY-MM-DD" required>
+  </div>
+  <div class="form-group">
+    <label for="movieDirector">Director</label>
+    <input type="text" class="form-control" name="movieDirector" id="movieDirector" placeholder="Director" required>
+  </div>  
+  <div class="form-group">
+    <label for="movieGenre">Genre</label>
+    <input type="text" class="form-control" name="movieGenre" id="movieGenre" placeholder="Genre">
+  </div>    
+  <div class="form-group">
+    <label for="movieTime">Play Time</label>
+    <input type="text" class="form-control" name="movieTime" id="movieTime" placeholder="HH:MM:SS" required>
+  </div>      
+  <div class="form-group">
+    <label for="moviePublisher">Publisher</label>
+    <input type="text" class="form-control" name="moviePublisher" id="moviePublisher" placeholder="Publisher">
+  </div>
+  <div class="form-group">
+    <label for="movieAge">Age Rating</label>
+    <input type="text" class="form-control" name="movieAge" id="movieAge" placeholder="G, PG, PG-13, R, NC-17, UNR">
+  </div>    
+  <div class="form-group">
+    <label for="movieRating">Star Rating (1-5)</label>
+    <input type="text" class="form-control" name="movieRating" id="movieRating" placeholder="Star Rating">
+  </div>             
+  <input type="submit" class="btn btn-default"/>
+</form>
+<hr>
+<table border=1>
+    <tr>
+        <th>Movie ID</th>
+        <th>Title</th>
+        <th>Release Date</th>
+        <th>Director</th>
+        <th>Genre</th>
+        <th>Play time</th>
+        <th>Publisher</th>
+        <th>Rating</th>
+        <th>Age Rating</th>
+        <th>Account ID</th> 
+        <th>Delete</th>           
+    </tr>
+    <% result.rows.forEach(function(row) { %>
+    <tr>
+        <td><%= row.movieid %></td>
+        <td><%= row.title %></td>
+        <td><%= row.releasedate %></td>
+        <td><%= row.director %></td>
+        <td><%= row.genre %></td>
+        <td><%= row.playtime %></td>
+        <td><%= row.publisher %></td>
+        <td><%= row.starrating %></td>
+        <td><%= row.agerating %></td>
+        <td><%= row.accid %></td>
+        <td><form  method="GET" action="<%= '/api/deleteMovie/' + row.movieid %>"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></form></td>                           
+    </tr>
+    <% }); %>
+</table>
 
 </div>
 

@@ -46,9 +46,9 @@ CREATE TABLE MOVIES(
     genre 			VARCHAR(15) 	NOT NULL,
     playTime 		TIME	 		NOT NULL,
     publisher 		VARCHAR(15) 	NOT NULL,
-    accID 			INT 			NOT NULL,
     starRating 		INT,
-    ageRating       VARCHAR(5)      NOT NULL DEFAULT('UNR'),
+    ageRating       VARCHAR(5)      DEFAULT('UNR'),
+    accID 			INT 			NOT NULL,
     PRIMARY KEY (movieID),
     FOREIGN KEY (accID) 
         REFERENCES ACCOUNT(accID) 
@@ -62,7 +62,7 @@ CREATE TABLE MOVIES(
 CREATE TABLE CASTLIST(
 	Fname		VARCHAR(20) NOT NULL,
 	Lname		VARCHAR(20) NOT NULL,
-	movieID	    INT,
+	movieID	    INT         NOT NULL,
 	FOREIGN KEY (movieID)
         REFERENCES MOVIES(movieID)
         ON UPDATE CASCADE
@@ -89,7 +89,7 @@ CREATE TABLE EBOOKS(
 	author		VARCHAR(50) NOT NULL,
 	publisher	VARCHAR(50) NOT NULL,
 	starRating	INT,
-	accID		INT,
+	accID		INT         NOT NULL,
 	PRIMARY KEY (bookId),
 	FOREIGN KEY (accID) 
         REFERENCES ACCOUNT(accID)
@@ -113,7 +113,7 @@ INSERT INTO GAMES
 
 --MOVIES sample data
 INSERT INTO MOVIES
-	VALUES (5504, 'Casablanca', '1942-11-26', 'Michael Curtiz', 'Drama, Romance' , '01:42:57', 'Hal B. Wallis', 1765, 5, 'PG');
+	VALUES (5504, 'Casablanca', '1942-11-26', 'Michael Curtiz', 'Drama, Romance' , '01:42:57', 'Hal B. Wallis', 5, 'PG', 1765);
 
 --MUSIC sample data	
 INSERT INTO MUSIC 

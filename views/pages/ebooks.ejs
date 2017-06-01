@@ -11,29 +11,55 @@
 <div class="container">
 <h2>E-books</h2>
 
-<ul>
-    <table border=1>
-        <tr>
-            <th>Book ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Publisher</th>
-            <th>Rating</th>
-            <th>Account ID</th>
-        </tr>
-        <% result.rows.forEach(function(row) { %>
-            <tr>
-                <td><%= row.bookid %></td>
-                <td><%= row.title %></td>
-                <td><%= row.author %></td>
-                <td><%= row.publisher %></td>
-                <td><%= row.starrating %></td>
-                <td><%= row.accid %></td>
-            </tr>
-        <% }); %>
-    </table>
+<form action="/api/ebook" method="post">
+  <div class="form-group">
+    <label for="bookId">Book ID</label>
+    <input type="text" class="form-control" name="bookId" id="bookId" placeholder="Book ID" required>
+  </div>
+  <div class="form-group">
+    <label for="bookTitle">Title</label>
+    <input type="text" class="form-control" name="bookTitle" id="bookTitle" placeholder="Title" required>
+  </div>
+  <div class="form-group">
+    <label for="bookAuthor">Author</label>
+    <input type="text" class="form-control" name="bookAuthor" id="bookAuthor" placeholder="Author" required>
+  </div>
+  <div class="form-group">
+    <label for="bookPublisher">Publisher</label>
+    <input type="text" class="form-control" name="bookPublisher" id="bookPublisher" placeholder="Publisher" required>
+  </div>  
+  <div class="form-group">
+    <label for="bookRating">Rating (1-5)</label>
+    <input type="text" class="form-control" name="bookRating" id="bookRating" placeholder="Rating">
+  </div>        
+  <input type="submit" class="btn btn-default"/>
+</form>
+<hr>
 
-</ul>
+<table border=1>
+   <tr>
+       <th>Book ID</th>
+       <th>Title</th>
+       <th>Author</th>
+       <th>Publisher</th>
+       <th>Rating</th>
+       <th>Account ID</th>
+       <th>Delete</th>
+   </tr>
+   <% result.rows.forEach(function(row) { %>
+       <tr>
+           <td><%= row.bookid %></td>
+           <td><%= row.title %></td>
+           <td><%= row.author %></td>
+           <td><%= row.publisher %></td>
+           <td><%= row.starrating %></td>
+           <td><%= row.accid %></td>
+           <td><form  method="GET" action="<%= '/api/deleteEbook/' + row.bookid %>"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></form></td>
+           
+       </tr>
+   <% }); %>
+</table>
+
 
 </div>
 
