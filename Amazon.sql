@@ -1,11 +1,11 @@
 --find out if CHECK constraint on starrating works, or if starRating must be initialzed to 0
 
---DROP TABLE CASTLIST;
---DROP TABLE EBOOKS;
---DROP TABLE GAMES;
---DROP TABLE MOVIE;
---DROP TABLE MUSIC;
---DROP TABLE ACCOUNT;
+DROP TABLE CASTLIST;
+DROP TABLE EBOOKS;
+DROP TABLE GAMES;
+DROP TABLE MOVIES;
+DROP TABLE MUSIC;
+DROP TABLE ACCOUNT;
 
 
 CREATE TABLE ACCOUNT (
@@ -105,15 +105,15 @@ INSERT INTO ACCOUNT
 
 --GAMES sample data
 INSERT INTO GAMES 
-	VALUES ( 0000001, 'Final Fantasy VII', 'SQUARESOFT', 'RPG', 'T', NULL, NULL, 1765);
+	VALUES ( 1, 'Final Fantasy VII', 'SQUARESOFT', 'RPG', 'T', NULL, NULL, 1765);
 INSERT INTO GAMES 
-	VALUES ( 0000002, 'Final Fantasy XV', 'SQUARE ENIX', 'RPG', 'T', 5, '50:14:23', 1765);
+	VALUES ( 2, 'Final Fantasy XV', 'SQUARE ENIX', 'RPG', 'T', 5, '02:14:23', 1765);
 INSERT INTO GAMES 
-	VALUES ( 0000003, 'Mature Game', 'SQUARELUL', 'jRPG', 'M', 3, NULL, 42069);
+	VALUES ( 3, 'Mature Game', 'SQUARELUL', 'jRPG', 'M', 3, NULL, 1765);
 
 --MOVIES sample data
 INSERT INTO MOVIES
-	VALUES (5504, 'Casablanca', '1942-11-26', 'Michael Curtiz', 'Drama Film, Romance' , '01:42:67', 'Hal B. Wallis', 1765, 5, 'PG');
+	VALUES (5504, 'Casablanca', '1942-11-26', 'Michael Curtiz', 'Drama, Romance' , '01:42:57', 'Hal B. Wallis', 1765, 5, 'PG');
 
 --MUSIC sample data	
 INSERT INTO MUSIC 
@@ -125,17 +125,17 @@ INSERT INTO MUSIC
 INSERT INTO EBOOKS
 	VALUES(1566, 'Lion', 'Saroo Brierley', 'Joseph Ellis', 5, 1765);
 INSERT INTO EBOOKS
-	VALUES(1567, 'Sully', 'Harper Collins', 'Jeffrey Zaslow', 5, 1766);
+	VALUES(1567, 'Sully', 'Harper Collins', 'Jeffrey Zaslow', 5, 1765);
 INSERT INTO EBOOKS
-	VALUES(1568, 'Hidden Figures', 'Margot Lee', 'Arthur Zelizer', 5, 1767);
+	VALUES(1568, 'Hidden Figures', 'Margot Lee', 'Arthur Zelizer', 5, 1765);
 
 --CASTLIST sample data
 INSERT INTO CASTLIST 
-	VALUES ('Humphrey', 'Bogart', 7145);
+	VALUES ('Humphrey', 'Bogart', 5504);
 INSERT INTO CASTLIST
-	VALUES ('Daniel', 'Radcliffe', 7146);
+	VALUES ('Daniel', 'Radcliffe', 5504);
 INSERT INTO CASTLIST
-	VALUES('Leonardo', 'DiCaprio', 7147);
+	VALUES('Leonardo', 'DiCaprio', 5504);
 
 	
 	
