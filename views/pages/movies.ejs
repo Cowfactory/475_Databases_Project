@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+<h2>Movies</h2>
+
+<ul>
+    <table border=1>
+        <tr>
+            <th>Movie ID</th>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Director</th>
+            <th>Genre</th>
+            <th>Play time</th>
+            <th>Publisher</th>
+            <th>Account ID</th>
+            <th>Rating</th>
+            <th>Age Rating</th>
+        </tr>
+        <% result.rows.forEach(function(row) { %>
+            <tr>
+                <td><%= row.movieid %></td>
+                <td><%= row.title %></td>
+                <td><%= row.releasedate %></td>
+                <td><%= row.director %></td>
+                <td><%= row.genre %></td>
+                <td><%= row.playtime %></td>
+                <td><%= row.publisher %></td>
+                <td><%= row.accid %></td>
+                <td><%= row.starrating %></td>
+                <td><%= row.agerating %></td>
+            </tr>
+        <% }); %>
+    </table>
+
+</ul>
+
+</div>
+
+</body>
+</html>

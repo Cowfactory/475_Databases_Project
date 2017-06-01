@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+<h2>Music</h2>
+
+<ul>
+    <table border=1>
+        <tr>
+            <th>Music ID</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Publisher</th>
+            <th>Play Time</th>
+            <th>Rating</th>
+            <th>Account ID</th>
+        </tr>
+        <% result.rows.forEach(function(row) { %>
+            <tr>
+                <td><%= row.musicid %></td>
+                <td><%= row.title %></td>
+                <td><%= row.artist %></td>
+                <td><%= row.publisher %></td>
+                <td><%= row.playtime %></td>
+                <td><%= row.starrating %></td>
+                <td><%= row.accid %></td>
+            </tr>
+        <% }); %>
+    </table>
+
+</ul>
+
+</div>
+
+</body>
+</html>
