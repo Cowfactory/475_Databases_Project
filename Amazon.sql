@@ -22,7 +22,7 @@ CREATE TABLE GAMES(
     gameID 	    INT			    NOT NULL,
     title 		VARCHAR(50) 	NOT NULL,
     publisher 	VARCHAR(50) 	NOT NULL,
-    genre 		VARCHAR(20) 	NOT NULL,
+    genre 		VARCHAR(20) 	NOT NULL,       
     ageRating 	VARCHAR(5),
     starRating 	INT,
     timePlayed 	TIME,
