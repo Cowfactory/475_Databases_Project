@@ -56,7 +56,7 @@ function createMovie(req, res) {
         if (err) {
             res.send(err);
         } else if (result) {
-            res.send('Movie created!');
+            res.redirect('/db/movies');
         }
     });
 }
@@ -70,12 +70,12 @@ function createEbook(req, res) {
         req.body.bookPublisher,
         (req.body.bookRating || undefined),
         1765];
-
+    
     client.query(insert, values, function (err, result) {
         if (err) {
             res.send(err);
         } else if (result) {
-            res.send('Ebook created!');
+            res.redirect('/db/ebooks');
         }
     });
 }
@@ -92,7 +92,7 @@ function createCast(req, res) {
         if (err) {
             res.send(err);
         } else if (result) {
-            res.send('Cast created!');
+            res.redirect('/db/castlist');
         }
     });
 }
@@ -112,7 +112,7 @@ function createMusic(req, res) {
         if (err) {
             res.send(err);
         } else if (result) {
-            res.send('Song created!');
+            res.redirect('/db/music');
         }
     });
 }
@@ -124,7 +124,7 @@ function deleteMovie(req, res, next) {
         if (err) {
             res.send(err);
         } else if (result) {
-            res.send('Movie deleted!');
+            res.redirect('/db/movies');
         }
     });
 }
@@ -136,7 +136,7 @@ function deleteGame(req, res, next) {
         if (err) {
             res.send(err);
         } else if (result) {
-            res.send('Game deleted!');
+            res.redirect('/db/games');
         }
     });
 }
@@ -148,7 +148,7 @@ function deleteMusic(req, res, next) {
         if (err) {
             res.send(err);
         } else if (result) {
-            res.send('Song deleted!');
+            res.redirect('/db/music');
         }
     });
 }
@@ -160,7 +160,7 @@ function deleteEbook(req, res, next) {
         if (err) {
             res.send(err);
         } else if (result) {
-            res.send('Ebook deleted!');
+            res.redirect('/db/ebooks');
         }
     });
 }
