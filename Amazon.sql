@@ -22,7 +22,7 @@ CREATE TABLE GAMES(
     gameID 	    INT			    NOT NULL,
     title 		VARCHAR(50) 	NOT NULL,
     publisher 	VARCHAR(50) 	NOT NULL,
-    genre 		VARCHAR(20) 	NOT NULL,
+    genre 		VARCHAR(20) 	NOT NULL,       
     ageRating 	VARCHAR(5),
     starRating 	INT,
     timePlayed 	TIME,
@@ -105,6 +105,19 @@ INSERT INTO ACCOUNT
 
 --GAMES sample data
 INSERT INTO GAMES 
+<<<<<<< HEAD
+	VALUES ( 0000001, 'Final Fantasy VII', 'SQUARESOFT', 'RPG', 'T', NULL, NULL, 1);
+INSERT INTO GAMES 
+	VALUES ( 0000002, 'Final Fantasy XV', 'SQUARE ENIX', 'RPG', 'T', 5, '50:14:23', 1);
+INSERT INTO GAMES 
+	VALUES ( 0000003, 'Mature Game', 'SQUARELUL', 'jRPG', 'M', 3, NULL, 1);
+INSERT INTO GAMES
+	VALUES ( 0000004, 'FIFA 15', 'EA SPORTS',  'Sports', 'E', 4, '4:14:45', 1); 
+	
+--MOVIES sample data
+INSERT INTO MOVIES
+	VALUES (5504, 'Casablanca', '1942-11-26', 'Michael Curtiz', 'Drama Film, Romance' , '01:42:67', 'Hal B. Wallis', 1, 5, 'PG');
+=======
 	VALUES ( 1, 'Final Fantasy VII', 'SQUARESOFT', 'RPG', 'T', NULL, NULL, 1765);
 INSERT INTO GAMES 
 	VALUES ( 2, 'Final Fantasy XV', 'SQUARE ENIX', 'RPG', 'T', 5, '02:14:23', 1765);
@@ -114,17 +127,31 @@ INSERT INTO GAMES
 --MOVIES sample data
 INSERT INTO MOVIES
 	VALUES (5504, 'Casablanca', '1942-11-26', 'Michael Curtiz', 'Drama, Romance' , '01:42:57', 'Hal B. Wallis', 5, 'PG', 1765);
+>>>>>>> origin/master
 
 --MUSIC sample data	
 INSERT INTO MUSIC 
-	VALUES ( 7145, 'Apologize', 'One Republic' , 'Greg Wells', '00:03:28', 5, 1765);
+	VALUES ( 7145, 'Apologize', 'One Republic' , 'Greg Wells', '00:03:28', 5, 1);
 
 
 --EBOOKS sample data
 
 INSERT INTO EBOOKS
-	VALUES(1566, 'Lion', 'Saroo Brierley', 'Joseph Ellis', 5, 1765);
+	VALUES(1566, 'Lion', 'Saroo Brierley', 'Joseph Ellis', 5, 1);
 INSERT INTO EBOOKS
+<<<<<<< HEAD
+	VALUES(1567, 'Sully', 'Harper Collins', 'Jeffrey Zaslow', 5, 1);
+INSERT INTO EBOOKS
+	VALUES(1568, 'Hidden Figures', 'Margot Lee', 'Arthur Zelizer', 5, 1);
+
+--CASTLIST sample data
+INSERT INTO CASTLIST 
+	VALUES ('Humphrey', 'Bogart', 1);
+INSERT INTO CASTLIST
+	VALUES ('Daniel', 'Radcliffe', 1);
+INSERT INTO CASTLIST
+	VALUES('Leonardo', 'DiCaprio', 1);
+=======
 	VALUES(1567, 'Sully', 'Harper Collins', 'Jeffrey Zaslow', 5, 1765);
 INSERT INTO EBOOKS
 	VALUES(1568, 'Hidden Figures', 'Margot Lee', 'Arthur Zelizer', 5, 1765);
@@ -136,6 +163,7 @@ INSERT INTO CASTLIST
 	VALUES ('Daniel', 'Radcliffe', 5504);
 INSERT INTO CASTLIST
 	VALUES('Leonardo', 'DiCaprio', 5504);
+>>>>>>> origin/master
 
 	
 	
