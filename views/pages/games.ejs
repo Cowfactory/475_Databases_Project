@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+<body>
+<% include ../partials/nav.ejs %>
+<div class="container">
+<h2>Games</h2>
+
+<form action="/api/game" method="post">
+  <div class="form-group">
+    <label for="gameId">Game ID</label>
+    <input type="text" class="form-control" name="gameId" id="gameId" placeholder="Game ID" required>
+  </div>
+  <div class="form-group">
+    <label for="gameTitle">Title</label>
+    <input type="text" class="form-control" name="gameTitle" id="gameTitle" placeholder="Title" required>
+  </div>
+  <div class="form-group">
+    <label for="gamePublisher">Publisher</label>
+    <input type="text" class="form-control" name="gamePublisher" id="gamePublisher" placeholder="Publisher" required>
+  </div>
+  <div class="form-group">
+    <label for="gameGenre">Genre</label>
+    <input type="text" class="form-control" name="gameGenre" id="gameGenre" placeholder="Genre" required>
+  </div>  
+  <div class="form-group">
+    <label for="gameAge">Age Rating</label>
+    <input type="text" class="form-control" name="gameAge" id="gameAge" placeholder="eC, E, E10, T, M, Ao">
+  </div>    
+  <div class="form-group">
+    <label for="gameRating">Star Rating (1-5)</label>
+    <input type="text" class="form-control" name="gameRating" id="gameRating" placeholder="Star Rating">
+  </div>      
+  <div class="form-group">
+    <label for="gameTime">Time Played</label>
+    <input type="text" class="form-control" name="gameTime" id="gameTime" placeholder="HH:MM:SS">
+  </div>     
+  <input type="submit" class="btn btn-default"/>
+</form>
+<hr>
+
+<table border=1>
+   <tr>
+       <th>Game ID</th>
+       <th>Title</th>
+       <th>Publisher</th>
+       <th>Genre</th>
+       <th>Age Rating</th>
+       <th>Star Rating</th>
+       <th>Time Played</th>
+       <th>Account ID</th>
+       <th>Delete</th>
+   </tr>
+   <% result.rows.forEach(function(row) { %>
+       <tr>
+           <td><%= row.gameid %></td>
+           <td><%= row.title %></td>
+           <td><%= row.publisher %></td>
+           <td><%= row.genre %></td>
+           <td><%= row.agerating %></td>
+           <td><%= row.starrating %></td>
+           <td><%= row.timeplayed %></td>
+           <td><%= row.accid %></td>
+           <td><form  method="GET" action="<%= '/api/deleteGame/' + row.gameid %>"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></form></td>
+       </tr>
+   <% }); %>
+</table>
+
+</div>
+</body>
+</html>

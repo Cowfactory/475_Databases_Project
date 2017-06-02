@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+<h2>Music</h2>
+
+<form action="/api/music" method="post">
+  <div class="form-group">
+    <label for="musicId">Music ID</label>
+    <input type="text" class="form-control" name="musicId" id="musicId" placeholder="Music ID" required>
+  </div>
+  <div class="form-group">
+    <label for="musicTitle">Title</label>
+    <input type="text" class="form-control" name="musicTitle" id="musicTitle" placeholder="Title" required>
+  </div>
+  <div class="form-group">
+    <label for="musicArtist">Artist</label>
+    <input type="text" class="form-control" name="musicArtist" id="musicArtist" placeholder="Artist" required>
+  </div>
+  <div class="form-group">
+    <label for="musicPublisher">Publisher</label>
+    <input type="text" class="form-control" name="musicPublisher" id="musicPublisher" placeholder="Publisher" required>
+  </div>  
+  <div class="form-group">
+    <label for="musicTime">Play Time</label>
+    <input type="text" class="form-control" name="musicTime" id="musicTime" placeholder="HH:MM:SS">
+  </div>      
+  <div class="form-group">
+    <label for="musicRating">Rating (1-5)</label>
+    <input type="text" class="form-control" name="musicRating" id="musicRating" placeholder="Rating">
+  </div>        
+  <input type="submit" class="btn btn-default"/>
+</form>
+<hr>
+
+<table border=1>
+   <tr>
+       <th>Music ID</th>
+       <th>Title</th>
+       <th>Artist</th>
+       <th>Publisher</th>
+       <th>Play Time</th>
+       <th>Rating</th>
+       <th>Account ID</th>
+       <th>Delete</th>
+   </tr>
+   <% result.rows.forEach(function(row) { %>
+       <tr>
+           <td><%= row.musicid %></td>
+           <td><%= row.title %></td>
+           <td><%= row.artist %></td>
+           <td><%= row.publisher %></td>
+           <td><%= row.playtime %></td>
+           <td><%= row.starrating %></td>
+           <td><%= row.accid %></td>
+           <td><form  method="GET" action="<%= '/api/deleteMusic/' + row.musicid %>"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button></form></td>           
+       </tr>
+   <% }); %>
+</table>
+
+
+</div>
+
+</body>
+</html>

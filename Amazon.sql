@@ -1,11 +1,11 @@
 --find out if CHECK constraint on starrating works, or if starRating must be initialzed to 0
 
---DROP TABLE CASTLIST;
---DROP TABLE EBOOKS;
---DROP TABLE GAMES;
---DROP TABLE MOVIE;
---DROP TABLE MUSIC;
---DROP TABLE ACCOUNT;
+DROP TABLE CASTLIST;
+DROP TABLE EBOOKS;
+DROP TABLE GAMES;
+DROP TABLE MOVIES;
+DROP TABLE MUSIC;
+DROP TABLE ACCOUNT;
 
 
 CREATE TABLE ACCOUNT (
@@ -46,9 +46,9 @@ CREATE TABLE MOVIES(
     genre 			VARCHAR(15) 	NOT NULL,
     playTime 		TIME	 		NOT NULL,
     publisher 		VARCHAR(15) 	NOT NULL,
-    accID 			INT 			NOT NULL,
     starRating 		INT,
-    ageRating       VARCHAR(5)      NOT NULL DEFAULT('UNR'),
+    ageRating       VARCHAR(5)      DEFAULT('UNR'),
+    accID 			INT 			NOT NULL,
     PRIMARY KEY (movieID),
     FOREIGN KEY (accID) 
         REFERENCES ACCOUNT(accID) 
@@ -62,7 +62,7 @@ CREATE TABLE MOVIES(
 CREATE TABLE CASTLIST(
 	Fname		VARCHAR(20) NOT NULL,
 	Lname		VARCHAR(20) NOT NULL,
-	movieID	    INT,
+	movieID	    INT         NOT NULL,
 	FOREIGN KEY (movieID)
         REFERENCES MOVIES(movieID)
         ON UPDATE CASCADE
@@ -89,7 +89,7 @@ CREATE TABLE EBOOKS(
 	author		VARCHAR(50) NOT NULL,
 	publisher	VARCHAR(50) NOT NULL,
 	starRating	INT,
-	accID		INT,
+	accID		INT         NOT NULL,
 	PRIMARY KEY (bookId),
 	FOREIGN KEY (accID) 
         REFERENCES ACCOUNT(accID)
@@ -105,6 +105,7 @@ INSERT INTO ACCOUNT
 
 --GAMES sample data
 INSERT INTO GAMES 
+<<<<<<< HEAD
 	VALUES ( 0000001, 'Final Fantasy VII', 'SQUARESOFT', 'RPG', 'T', NULL, NULL, 1);
 INSERT INTO GAMES 
 	VALUES ( 0000002, 'Final Fantasy XV', 'SQUARE ENIX', 'RPG', 'T', 5, '50:14:23', 1);
@@ -116,6 +117,17 @@ INSERT INTO GAMES
 --MOVIES sample data
 INSERT INTO MOVIES
 	VALUES (5504, 'Casablanca', '1942-11-26', 'Michael Curtiz', 'Drama Film, Romance' , '01:42:67', 'Hal B. Wallis', 1, 5, 'PG');
+=======
+	VALUES ( 1, 'Final Fantasy VII', 'SQUARESOFT', 'RPG', 'T', NULL, NULL, 1765);
+INSERT INTO GAMES 
+	VALUES ( 2, 'Final Fantasy XV', 'SQUARE ENIX', 'RPG', 'T', 5, '02:14:23', 1765);
+INSERT INTO GAMES 
+	VALUES ( 3, 'Mature Game', 'SQUARELUL', 'jRPG', 'M', 3, NULL, 1765);
+
+--MOVIES sample data
+INSERT INTO MOVIES
+	VALUES (5504, 'Casablanca', '1942-11-26', 'Michael Curtiz', 'Drama, Romance' , '01:42:57', 'Hal B. Wallis', 5, 'PG', 1765);
+>>>>>>> origin/master
 
 --MUSIC sample data	
 INSERT INTO MUSIC 
@@ -127,6 +139,7 @@ INSERT INTO MUSIC
 INSERT INTO EBOOKS
 	VALUES(1566, 'Lion', 'Saroo Brierley', 'Joseph Ellis', 5, 1);
 INSERT INTO EBOOKS
+<<<<<<< HEAD
 	VALUES(1567, 'Sully', 'Harper Collins', 'Jeffrey Zaslow', 5, 1);
 INSERT INTO EBOOKS
 	VALUES(1568, 'Hidden Figures', 'Margot Lee', 'Arthur Zelizer', 5, 1);
@@ -138,6 +151,19 @@ INSERT INTO CASTLIST
 	VALUES ('Daniel', 'Radcliffe', 1);
 INSERT INTO CASTLIST
 	VALUES('Leonardo', 'DiCaprio', 1);
+=======
+	VALUES(1567, 'Sully', 'Harper Collins', 'Jeffrey Zaslow', 5, 1765);
+INSERT INTO EBOOKS
+	VALUES(1568, 'Hidden Figures', 'Margot Lee', 'Arthur Zelizer', 5, 1765);
+
+--CASTLIST sample data
+INSERT INTO CASTLIST 
+	VALUES ('Humphrey', 'Bogart', 5504);
+INSERT INTO CASTLIST
+	VALUES ('Daniel', 'Radcliffe', 5504);
+INSERT INTO CASTLIST
+	VALUES('Leonardo', 'DiCaprio', 5504);
+>>>>>>> origin/master
 
 	
 	
