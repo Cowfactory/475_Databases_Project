@@ -37,7 +37,7 @@ function createGame(req, res) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/games');
+            res.redirect('/games');
         }
     });
 }
@@ -62,7 +62,7 @@ function createMovie(req, res) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/movies');
+            res.redirect('/movies');
         }
     });
 }
@@ -83,7 +83,7 @@ function createEbook(req, res) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/ebooks');
+            res.redirect('/ebooks');
         }
     });
 }
@@ -102,7 +102,7 @@ function createCast(req, res) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/castlist');
+            res.redirect('/castlist');
         }
     });
 }
@@ -124,7 +124,7 @@ function createMusic(req, res) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/music');
+            res.redirect('/music');
         }
     });
 }
@@ -138,7 +138,7 @@ function deleteMovie(req, res, next) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/movies');
+            res.redirect('/movies');
         }
     });
 }
@@ -152,7 +152,7 @@ function deleteGame(req, res, next) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/games');
+            res.redirect('/games');
         }
     });
 }
@@ -166,7 +166,7 @@ function deleteMusic(req, res, next) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/music');
+            res.redirect('/music');
         }
     });
 }
@@ -180,26 +180,49 @@ function deleteEbook(req, res, next) {
                 err: err
             });
         } else if (result) {
-            res.redirect('/db/ebooks');
+            res.redirect('/ebooks');
         }
     });
 }
 
 function searchMovie(req, res, next) {
-    var search = 'SELECT * FROM MOVIES WHERE title=$1::varchar ' +
-                 'OR director=$1::varchar ' +
-                 'OR genre=$1::varchar ' + 
-                 'OR publisher=$1::varchar ' +
-                 'OR ageRating=$1::varchar';
+    var insert = 'SELECT * FROM MOVIES WHERE movieId=$1 OR title=$2 OR releaseDate=$3 OR director=$4 OR genre=$5 OR playTime=$6 OR publisher=$7 OR starRating=$8 OR ageRating=$9';
+    var values = [
+        req.body.movieId,
+        req.body.movieTitle,
+        (req.body.movieReleaseDate || undefined),
+        req.body.movieDirector,
+        req.body.movieGenre,
+        (req.body.movieTime || undefined),
+        req.body.moviePublisher,
+        (req.body.movieRating || undefined),
+        (req.body.movieAge)];
 
-    var query = [req.params.query];
-    client.query(search, query, function (err, result) {
+    client.query(insert, values, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.send(result);
         }
-    })
+    });
+}
+
+function getCast(req, res) {
+    var query = 'SELECT * FROM CASTLIST WHERE movieId=$1';
+    var movieId = [req.params.id];
+    client.query(query, movieId, function (err, result) {
+        if (err) {
+            res.render('pages/error', {
+                err: err
+            });
+        } else if (result) {
+            res.render('pages/castlist', {
+                result: result
+            });
+        }
+    });
 }
 
 module.exports = {
@@ -213,5 +236,5 @@ module.exports = {
     deleteMovie: deleteMovie,
     deleteMusic: deleteMusic,
     deleteEbook: deleteEbook,
-    searchMovie:searchMovie
+    getCast: getCast
 };

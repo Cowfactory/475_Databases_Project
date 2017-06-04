@@ -36,7 +36,8 @@ app.get('/api/deleteMusic/:id', db.deleteMusic);
 app.get('/api/deleteEbook/:id', db.deleteEbook);
 
 // Search
-app.get('/db/movies/?query=:query', db.searchMovie);
+//app.post('/search/movie', db.searchMovie);
+app.get('/castlist/:id', db.getCast);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
