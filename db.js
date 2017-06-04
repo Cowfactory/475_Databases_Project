@@ -203,18 +203,113 @@ function deleteCast(req, res, next) {
 
 }
 
-function searchMovie(req, res, next) {
-    var insert = 'SELECT * FROM MOVIES WHERE movieId=$1 OR title=$2 OR releaseDate=$3 OR director=$4 OR genre=$5 OR playTime=$6 OR publisher=$7 OR starRating=$8 OR ageRating=$9';
+function getMusic(req, res, next) {
+    var query =  'SELECT * FROM MUSIC WHERE musicId=$1 OR ' +
+                 'LOWER(title)=LOWER($2) OR ' + 
+                 'LOWER(artist)=LOWER($3) OR ' + 
+                 'LOWER(publisher)=LOWER($4) OR ' +
+                 'playTime=$5 OR ' +
+                 'starRating=$6';
     var values = [
-        req.body.movieId,
-        req.body.movieTitle,
-        (req.body.movieReleaseDate || undefined),
-        req.body.movieDirector,
-        req.body.movieGenre,
-        (req.body.movieTime || undefined),
-        req.body.moviePublisher,
-        (req.body.movieRating || undefined),
-        (req.body.movieAge)];
+        (req.query.musicId || null),
+        (req.query.musicTitle || null),
+        (req.query.musicArtist || null),
+        (req.query.musicPublisher || null),
+        (req.query.musicTime || null),
+        (req.query.musicRating || null)];
+
+    client.query(query, values, function (err, result) {
+        if (err) {
+            res.render('pages/error', {
+                err: err
+            });
+        } else if (result) {
+            res.render(('pages/music'), {
+                result: result
+            });
+        }
+    });    
+}
+
+function getEBook(req, res, next) {
+    var query = 'SELECT * FROM EBOOKS WHERE bookID=$1 OR ' + 
+                'LOWER(title)=LOWER($2) OR ' + 
+                'LOWER(author)=LOWER($3) OR ' + 
+                'LOWER(publisher)=LOWER($4) OR ' +
+                'starRating=$5';
+
+    var values = [
+        (req.query.bookId || null),
+        (req.query.bookTitle || null),
+        (req.query.bookAuthor || null),
+        (req.query.bookPublisher || null),
+        (req.query.bookRating || null)];
+    
+    client.query(query, values, function (err, result) {
+        if (err) {
+            res.render('pages/error', {
+                err: err
+            });
+        } else if (result) {
+            res.render(('pages/ebooks'), {
+            result: result
+            });
+        }
+    });    
+}
+
+function getGame(req, res, next) {
+    var query = 'SELECT * FROM GAMES WHERE gameID=$1 OR ' +
+                 'LOWER(title)=LOWER($2) OR '+ 
+                 'LOWER(publisher)=$3 OR ' + 
+                 'LOWER(genre)=LOWER($4) OR ' + 
+                 'LOWER(ageRating)=LOWER($5) OR ' + 
+                 'starRating=$6 OR ' + 
+                 'timePlayed=$7';
+                 
+    var values = [
+        (req.query.gameId || null),
+        (req.query.gameTitle || null),
+        (req.query.gamePublisher || null),
+        (req.query.gameGenre || null),
+        (req.query.gameAge || null),
+        (req.query.gameRating || null),
+        (req.query.gameTime || null)];
+
+    client.query(query, values, function (err, result) {
+        if (err) {
+            res.render('pages/error', {
+                err: err
+            });
+        } else if (result) {
+            res.render(('pages/games'), {
+            result: result
+            });
+        }
+    });
+}
+
+function getMovie(req, res, next) {
+    var insert = 'SELECT * FROM MOVIES WHERE movieId=$1 OR ' +
+                 'LOWER(title)=LOWER($2) OR '+ 
+                 'releaseDate=$3 OR ' + 
+                 'LOWER(director)=LOWER($4) OR ' + 
+                 'LOWER(genre)=LOWER($5) OR ' + 
+                 'playTime=$6 OR ' + 
+                 'LOWER(publisher)=LOWER($7) OR ' +
+                 'starRating=$8 OR ' +
+                 'LOWER(ageRating)=LOWER($9)';
+
+    var values = [
+        (req.query.movieId || null),
+        (req.query.movieTitle || null),
+        (req.query.movieReleaseDate || null),
+        (req.query.movieDirector || null),
+        (req.query.movieGenre || null),
+        (req.query.movieTime || null),
+        (req.query.moviePublisher || null),
+        (req.query.movieRating || null),
+        (req.query.movieAge || null)];
 
     client.query(insert, values, function (err, result) {
         if (err) {
@@ -222,7 +317,9 @@ function searchMovie(req, res, next) {
                 err: err
             });
         } else if (result) {
-            res.send(result);
+            res.render(('pages/movies'), {
+            result: result
+            });
         }
     });
 }
@@ -256,5 +353,9 @@ module.exports = {
     deleteMusic: deleteMusic,
     deleteEbook: deleteEbook,
     deleteCast: deleteCast,
-    getCast: getCast
+    getMusic: getMusic,
+    getCast: getCast,
+    getMovie: getMovie,
+    getGame: getGame,
+    getEBook: getEBook
 };

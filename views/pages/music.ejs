@@ -10,7 +10,39 @@
 
 <div class="container">
 <h2>Music</h2>
-
+<details>
+<summary> Search Music </summary>
+<br>
+<form action="/search/music" method="get">
+  <div class="form-group">
+    <label for="musicId">Music ID</label>
+    <input type="text" class="form-control" name="musicId" id="musicId" placeholder="Music ID">
+  </div>
+  <div class="form-group">
+    <label for="musicTitle">Title</label>
+    <input type="text" class="form-control" name="musicTitle" id="musicTitle" placeholder="Title">
+  </div>
+  <div class="form-group">
+    <label for="musicArtist">Artist</label>
+    <input type="text" class="form-control" name="musicArtist" id="musicArtist" placeholder="Artist">
+  </div>
+  <div class="form-group">
+    <label for="musicPublisher">Publisher</label>
+    <input type="text" class="form-control" name="musicPublisher" id="musicPublisher" placeholder="Publisher">
+  </div>  
+  <div class="form-group">
+    <label for="musicTime">Play Time</label>
+    <input type="text" class="form-control" name="musicTime" id="musicTime" placeholder="HH:MM:SS">
+  </div>      
+  <div class="form-group">
+    <label for="musicRating">Rating (1-5)</label>
+    <input type="text" class="form-control" name="musicRating" id="musicRating" placeholder="Rating">
+  </div>        
+  <input type="submit" class="btn btn-default"/>
+</form>
+<hr>
+</details>
+<hr>
 <details>
 <summary> Insert New Music </summary>
 <br>

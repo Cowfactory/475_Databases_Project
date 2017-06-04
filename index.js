@@ -28,7 +28,6 @@ app.post('/api/castlist/:id', db.createCast);
 app.post('/api/music', db.createMusic);
 app.post('/api/ebook', db.createEbook);
 
-
 // Deletes
 app.get('/api/deleteGame/:id', db.deleteGame);
 app.get('/api/deleteMovie/:id', db.deleteMovie);
@@ -36,8 +35,11 @@ app.get('/api/deleteMusic/:id', db.deleteMusic);
 app.get('/api/deleteEbook/:id', db.deleteEbook);
 app.get('/api/deleteCast/:id/:fname/:lname', db.deleteCast)
 
-// Search
-//app.post('/search/movie', db.searchMovie);
+// Retrieves
+app.get('/search/music', db.getMusic);
+app.get('/search/ebook', db.getEBook);
+app.get('/search/game', db.getGame);
+app.get('/search/movie', db.getMovie);
 app.get('/castlist/:id', db.getCast);
 
 app.listen(app.get('port'), function() {
