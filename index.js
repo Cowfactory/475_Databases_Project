@@ -24,7 +24,7 @@ app.get('/:table', db.getAll);
 // Creates
 app.post('/api/game', db.createGame);
 app.post('/api/movie', db.createMovie);
-app.post('/api/castlist', db.createCast);
+app.post('/api/castlist/:id', db.createCast);
 app.post('/api/music', db.createMusic);
 app.post('/api/ebook', db.createEbook);
 
@@ -34,6 +34,7 @@ app.get('/api/deleteGame/:id', db.deleteGame);
 app.get('/api/deleteMovie/:id', db.deleteMovie);
 app.get('/api/deleteMusic/:id', db.deleteMusic);
 app.get('/api/deleteEbook/:id', db.deleteEbook);
+app.get('/api/deleteCast/:id/:fname/:lname', db.deleteCast)
 
 // Search
 //app.post('/search/movie', db.searchMovie);

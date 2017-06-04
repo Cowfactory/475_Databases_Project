@@ -93,16 +93,15 @@ function createCast(req, res) {
     var values = [
         req.body.fName,
         req.body.lName,
-        req.body.movieId,
+        req.params.id,
     ];
-
     client.query(insert, values, function (err, result) {
         if (err) {
             res.render('pages/error', {
                 err: err
             });
         } else if (result) {
-            res.redirect('/castlist');
+            res.redirect('/castlist/' + req.params.id);
         }
     });
 }
@@ -185,6 +184,25 @@ function deleteEbook(req, res, next) {
     });
 }
 
+function deleteCast(req, res, next) {
+    var del = 'DELETE FROM CASTLIST WHERE fName=$1 AND lName=$2 AND movieId=$3';
+    var values = [
+        req.params.fname,
+        req.params.lname,
+        req.params.id
+    ];
+    client.query(del, values, function (err, result) {
+        if (err) {
+            res.render('pages/error', {
+                err: err
+            });
+        } else if (result) {
+            res.redirect('/castlist/' + req.params.id);
+        }
+    })
+
+}
+
 function searchMovie(req, res, next) {
     var insert = 'SELECT * FROM MOVIES WHERE movieId=$1 OR title=$2 OR releaseDate=$3 OR director=$4 OR genre=$5 OR playTime=$6 OR publisher=$7 OR starRating=$8 OR ageRating=$9';
     var values = [
@@ -210,7 +228,7 @@ function searchMovie(req, res, next) {
 }
 
 function getCast(req, res) {
-    var query = 'SELECT * FROM CASTLIST WHERE movieId=$1';
+    var query = 'SELECT CASTLIST.Fname, CASTLIST.Lname, MOVIES.title, CASTLIST.movieId FROM CASTLIST, MOVIES WHERE CASTLIST.movieId=$1 AND MOVIES.movieId=CASTLIST.movieId';
     var movieId = [req.params.id];
     client.query(query, movieId, function (err, result) {
         if (err) {
@@ -219,7 +237,8 @@ function getCast(req, res) {
             });
         } else if (result) {
             res.render('pages/castlist', {
-                result: result
+                result: result,
+                movieId: movieId
             });
         }
     });
@@ -236,5 +255,6 @@ module.exports = {
     deleteMovie: deleteMovie,
     deleteMusic: deleteMusic,
     deleteEbook: deleteEbook,
+    deleteCast: deleteCast,
     getCast: getCast
 };
