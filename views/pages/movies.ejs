@@ -11,6 +11,17 @@
 <div class="container">
 <h2>Movies</h2>
 
+<form class="form-inline" id="search">
+  <label class="sr-only" for="search">Name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="query" name="query" placeholder="Search">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<hr>
+
+<details>
+<summary> Insert New Movie </summary>
+<br>
 <form action="/api/movie" method="post">
   <div class="form-group">
     <label for="movieId">Movie ID</label>
@@ -50,6 +61,8 @@
   </div>             
   <input type="submit" class="btn btn-default"/>
 </form>
+</details>
+
 <hr>
 <table border=1>
     <tr>

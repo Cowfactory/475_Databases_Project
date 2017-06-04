@@ -7,13 +7,15 @@ function getAll(req, res, next) {
     var get = 'SELECT * FROM ' + req.params.table;
 
     client.query(get, function (err, result) {
-      if (err) {
-        res.send('Error ' + err);
-      } else {
-        res.render(('pages/' + req.params.table), {
-          result: result
-        });
-      }
+        if (err) {
+            res.render('pages/error', {
+                err: err
+            });
+        } else {
+            res.render(('pages/' + req.params.table), {
+            result: result
+            });
+         }
     });
 }
 
@@ -31,9 +33,11 @@ function createGame(req, res) {
 
     client.query(insert, values, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
-            res.send('Game created!');
+            res.redirect('/db/games');
         }
     });
 }
@@ -49,12 +53,14 @@ function createMovie(req, res) {
         req.body.movieTime,
         req.body.moviePublisher,
         (req.body.movieRating || undefined),
-        (req.body.movieAge || undefined),
+        (req.body.movieAge || 'UNR'),
         1765];
 
     client.query(insert, values, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.redirect('/db/movies');
         }
@@ -73,7 +79,9 @@ function createEbook(req, res) {
     
     client.query(insert, values, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.redirect('/db/ebooks');
         }
@@ -90,7 +98,9 @@ function createCast(req, res) {
 
     client.query(insert, values, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.redirect('/db/castlist');
         }
@@ -110,7 +120,9 @@ function createMusic(req, res) {
 
     client.query(insert, values, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.redirect('/db/music');
         }
@@ -122,7 +134,9 @@ function deleteMovie(req, res, next) {
 
     client.query(del, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.redirect('/db/movies');
         }
@@ -134,7 +148,9 @@ function deleteGame(req, res, next) {
 
     client.query(del, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.redirect('/db/games');
         }
@@ -146,7 +162,9 @@ function deleteMusic(req, res, next) {
 
     client.query(del, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.redirect('/db/music');
         }
@@ -158,11 +176,30 @@ function deleteEbook(req, res, next) {
 
     client.query(del, function (err, result) {
         if (err) {
-            res.send(err);
+            res.render('pages/error', {
+                err: err
+            });
         } else if (result) {
             res.redirect('/db/ebooks');
         }
     });
+}
+
+function searchMovie(req, res, next) {
+    var search = 'SELECT * FROM MOVIES WHERE title=$1::varchar ' +
+                 'OR director=$1::varchar ' +
+                 'OR genre=$1::varchar ' + 
+                 'OR publisher=$1::varchar ' +
+                 'OR ageRating=$1::varchar';
+
+    var query = [req.params.query];
+    client.query(search, query, function (err, result) {
+        if (err) {
+            res.send(err);
+        } else if (result) {
+            res.send(result);
+        }
+    })
 }
 
 module.exports = {
@@ -175,5 +212,6 @@ module.exports = {
     deleteGame: deleteGame,
     deleteMovie: deleteMovie,
     deleteMusic: deleteMusic,
-    deleteEbook: deleteEbook
+    deleteEbook: deleteEbook,
+    searchMovie:searchMovie
 };

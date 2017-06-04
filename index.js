@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 
 pg.defaults.ssl = true;
 
-app.get('/db/:table', db.getAll);
+app.get('/:table', db.getAll);
 
 // Creates
 app.post('/api/game', db.createGame);
@@ -35,6 +35,8 @@ app.get('/api/deleteMovie/:id', db.deleteMovie);
 app.get('/api/deleteMusic/:id', db.deleteMusic);
 app.get('/api/deleteEbook/:id', db.deleteEbook);
 
+// Search
+app.get('/db/movies/?query=:query', db.searchMovie);
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
