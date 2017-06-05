@@ -121,7 +121,7 @@
     <tr>
         <td><%= row.movieid %></td>
         <td><%= row.title %></td>
-        <td><%= row.releasedate %></td>
+        <td><%= new Date(row.releasedate).toDateString() %></td>
         <td><%= row.director %></td>
         <td><%= row.genre %></td>
         <td><%= row.playtime %></td>
